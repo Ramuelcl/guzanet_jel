@@ -37,16 +37,17 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        // \dd($request);
-        $curso=new Curso;
-
-        $curso->name=$request->name;
-        $curso->description=$request->description;
-        $curso->category=$request->category;
-
-        $curso->save();
-
-        return \redirect()->route('cursos.index')->with('success', 'hecho');
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|min:5',
+            // 'category'=>'',
+        ], [
+            'name.required' => 'El nombre es requerido.',
+            'description.required' => 'La descripción es requerida.',
+            // 'category'=>'',
+        ]);
+        $curso =Curso::create($request->all());
+        return \redirect()->route('cursos.show', $curso)->with('success', 'Registro creado satisfactoriamente.');
     }
 
     /**
@@ -72,15 +73,6 @@ class CursoController extends Controller
     public function edit(Curso $curso)
     {
         return \view('cursos.edit', compact('curso'));
-
-        // $curso=Curso::find($id);
-        // $curso->name=$request->name;
-        // $curso->description=$request->description;
-        // $curso->category=$request->category;
-
-        // $curso->save();
-        return $curso;
-        // return \redirect()->route('cursos.show', $curso)->with('success', 'Project aangepast');
     }
 
     /**
@@ -92,8 +84,40 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required|min:5',
+        ], [
+            'name.required' => 'El nombre es requerido.',
+            'description.required' => 'La descripción es requerida.',
+        ]);
+
+        $curso->update($request->all());
+
+        return \redirect()->route('cursos.show', $curso)->with('success', 'Registro actualizado satisfactoriamente.');
     }
+
+//     public function store(Request $request)
+//     {
+//         $data = $request->validate([
+//             'name' => 'required',
+//             'password' => 'required|min:5',
+//             'email' => 'required|email|unique:users'
+//         ], [
+//             'name.required' => 'Name field is required.',
+//             'password.required' => 'Password field is required.',
+//             'email.required' => 'Email field is required.',
+//             'email.email' => 'Email field must be email address.'
+//         ]);
+
+//         $data['password'] = bcrypt($data['password']);
+
+//         User::create($data);
+
+//         return back()->with('success', 'User created successfully.');
+//     }
+
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -103,6 +127,7 @@ class CursoController extends Controller
      */
     public function destroy(Curso $curso)
     {
-        //
+        $curso->delete();
+        return \redirect()->route('cursos.index')->with('success', 'Registro eliminado satisfactoriamente.');
     }
 }

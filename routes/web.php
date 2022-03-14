@@ -15,16 +15,21 @@ use App\Http\Controllers\inicio\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+});
 
 Route::controller(CursoController::class)->group(function () {
     Route::get('/cursos', 'index')->name('cursos.index');
-    Route::get('/cursos/create', 'create')->name('cursos.create');
-    Route::post('/cursos/create', 'store')->name('cursos.store');
-    Route::get('/cursos/{curso}', 'show')->name('cursos.show');
-    Route::get('/cursos/{curso}/edit', 'edit')->name('cursos.edit');
-    Route::post('/cursos/{curso}', 'update')->name('cursos.update');
 
-    // Route::get('/cursos/{curso}/{categoria}', 'show')->name('cursos.categoria');
+    Route::get('/cursos/create', 'create')->name('cursos.create');
+    Route::post('/cursos', 'store')->name('cursos.store');
+
+    Route::get('/cursos/edit/{curso}', 'edit')->name('cursos.edit');
+    Route::put('/cursos/edit/{curso}', 'update')->name('cursos.update');
+
+    Route::delete('/cursos/{curso}', 'destroy')->name('cursos.destroy');
+
+    Route::get('/cursos/{curso}', 'show')->name('cursos.show');
 });
 //

@@ -3,7 +3,7 @@
 
 @section('content')
   <h1>crear curso</h1>
-  <div class="flex-block">
+  <div>
     <form action="{{ route('cursos.store') }}" method="POST">
       @csrf
       {{-- @method('') --}}

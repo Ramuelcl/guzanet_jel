@@ -4,7 +4,7 @@
 @section('content')
   <h1>editar curso</h1>
 
-  <div class="flex-block">
+  <div>
     <form action="{{ route('cursos.update', $curso) }}" method="post">
       @csrf
       @method('PUT')
