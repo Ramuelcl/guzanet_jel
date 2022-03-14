@@ -15,7 +15,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        return \view('cursos.index');
+        $cursos=Curso::orderby('id', 'desc')->paginate(5);
+        return \view('cursos.index', compact('cursos'));
     }
 
     /**
@@ -36,7 +37,16 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // \dd($request);
+        $curso=new Curso;
+
+        $curso->name=$request->name;
+        $curso->description=$request->description;
+        $curso->category=$request->category;
+
+        $curso->save();
+
+        return \redirect()->route('cursos.index')->with('success', 'hecho');
     }
 
     /**
@@ -46,13 +56,11 @@ class CursoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show($curso, $categoria=null)
+    public function show(Curso $curso)
     {
-        if ($categoria==null) {
-            return \view('cursos.show', compact('curso'));
-        } else {
-            return \view('cursos.show', compact('curso', 'categoria'));
-        }
+        // $curso=Curso::find($id);
+        // dd($curso);
+        return \view('cursos.show', compact('curso'));
     }
 
     /**
@@ -63,7 +71,16 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        //
+        return \view('cursos.edit', compact('curso'));
+
+        // $curso=Curso::find($id);
+        // $curso->name=$request->name;
+        // $curso->description=$request->description;
+        // $curso->category=$request->category;
+
+        // $curso->save();
+        return $curso;
+        // return \redirect()->route('cursos.show', $curso)->with('success', 'Project aangepast');
     }
 
     /**

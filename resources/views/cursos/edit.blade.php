@@ -2,11 +2,12 @@
 @section('title', 'Guzanet')
 
 @section('content')
-  <h1>crear curso</h1>
+  <h1>editar curso</h1>
+
   <div class="flex-block">
-    <form action="{{ route('cursos.store') }}" method="POST">
+    <form action="{{ route('cursos.update', $curso) }}" method="post">
       @csrf
-      {{-- @method('') --}}
+      @method('PUT')
 
       @include('cursos.create_edit')
     </form>

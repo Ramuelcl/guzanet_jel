@@ -18,9 +18,13 @@ use App\Http\Controllers\inicio\HomeController;
 Route::get('/', [HomeController::class,'index']);
 
 Route::controller(CursoController::class)->group(function () {
-    Route::get('/cursos', 'index');
-    Route::get('/cursos/create', 'create');
-    Route::get('/cursos/{curso}', 'show');
-    Route::get('/cursos/{curso}/{categoria}', 'show');
-    // Route::post('/cursos', 'store');
+    Route::get('/cursos', 'index')->name('cursos.index');
+    Route::get('/cursos/create', 'create')->name('cursos.create');
+    Route::post('/cursos/create', 'store')->name('cursos.store');
+    Route::get('/cursos/{curso}', 'show')->name('cursos.show');
+    Route::get('/cursos/{curso}/edit', 'edit')->name('cursos.edit');
+    Route::post('/cursos/{curso}', 'update')->name('cursos.update');
+
+    // Route::get('/cursos/{curso}/{categoria}', 'show')->name('cursos.categoria');
 });
+//
