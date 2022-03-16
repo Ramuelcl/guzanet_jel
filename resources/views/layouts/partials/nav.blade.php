@@ -1,5 +1,5 @@
 <div class="container mx-auto flex justify-between px-4 py-6">
-  <div class="items-left">
+  <div class="flex items-left">
     <ul class="flex items-center">
       <li class="ml-16">
         {{-- LOGO --}}
@@ -11,7 +11,7 @@
           class="{{ request()->routeIs('cursos.*') ? 'active' : '' }} hover:text-gray-300">Cursos</a></li>
     </ul>
   </div>
-  <div class="items-right">
+  <div class="flex items-right">
     <ul class="flex items-center">
       <li class="ml-6"><a href="{{ route('nosotros') }}"
           class="{{ request()->routeIs('nosotros') ? 'active' : '' }} hover:text-gray-300">Acerca
