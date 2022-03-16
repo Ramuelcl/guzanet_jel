@@ -13,11 +13,14 @@
   </div>
   <div class="flex items-right">
     <ul class="flex items-center">
+      @include('recursos.search')
       <li class="ml-6"><a href="{{ route('nosotros') }}"
           class="{{ request()->routeIs('nosotros') ? 'active' : '' }} hover:text-gray-300">Acerca
           de...</a></li>
       <li class="ml-6"><a href="{{ route('contactanos') }}"
           class="{{ request()->routeIs('contactanos') ? 'active' : '' }} hover:text-gray-300">Contáctanos</a></li>
+      <li class="ml-6"><a href="{{ route('users.index') }}"
+          class="{{ request()->routeIs('users.*') ? 'active' : '' }} hover:text-gray-300">Usuarios</a></li>
     </ul>
     <hr>
   </div>

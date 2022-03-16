@@ -26,14 +26,15 @@
   </header>
   {{-- mensajes --}}
   <div class="container">
-    @if (Session::has('success'))
+    @include('recursos.flashMessagges')
+    {{-- @if (Session::has('success'))
       <div class="alert alert-success">
         {{ Session::get('success') }}
         @php
           Session::forget('success');
         @endphp
       </div>
-    @endif
+    @endif --}}
   </div>
 
   @yield('content')

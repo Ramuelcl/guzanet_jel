@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\curso\CursoController;
 use App\Http\Controllers\inicio\HomeController;
+use App\Http\Controllers\curso\CursoController;
+use App\Http\Controllers\users\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,18 +23,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/contactanos', 'enviar')->name('contactanos.enviar');
 });
 
-// Route::controller(CursoController::class)->group(function () {
-//     Route::get('/cursos', 'index')->name('cursos.index');
-
-//     Route::get('/cursos/create', 'create')->name('cursos.create');
-//     Route::post('/cursos', 'store')->name('cursos.store');
-
-//     Route::get('/cursos/edit/{curso}', 'edit')->name('cursos.edit');
-//     Route::put('/cursos/edit/{curso}', 'update')->name('cursos.update');
-
-//     Route::delete('/cursos/{curso}', 'destroy')->name('cursos.destroy');
-
-//     Route::get('/cursos/{curso}', 'show')->name('cursos.show');
-// });
-//
+// Cursos
 Route::resource('cursos', CursoController::class);
+
+// users
+Route::resource('users', UserController::class);
