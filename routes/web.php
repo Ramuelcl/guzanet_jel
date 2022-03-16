@@ -28,3 +28,7 @@ Route::resource('cursos', CursoController::class);
 
 // users
 Route::resource('users', UserController::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
