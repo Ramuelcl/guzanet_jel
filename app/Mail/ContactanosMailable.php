@@ -11,14 +11,16 @@ class ContactanosMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject="información de contacto";
+    public $contacto;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contacto)
     {
-        //
+        $this->contacto=$contacto;
     }
 
     /**
@@ -28,6 +30,6 @@ class ContactanosMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('eMails.contactanos');
     }
 }

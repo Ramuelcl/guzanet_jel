@@ -19,6 +19,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::view('/acercade', 'principal.nosotros')->name('nosotros');
     Route::view('/contactanos', 'principal.contactanos')->name('contactanos');
+    Route::post('/contactanos', 'enviar')->name('contactanos.enviar');
 });
 
 // Route::controller(CursoController::class)->group(function () {

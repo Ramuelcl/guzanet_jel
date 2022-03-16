@@ -1,6 +1,4 @@
 @php
-$exist = isset($curso->id);
-// dump($curso->name);
 $name = old('name', isset($curso->name) ? $curso->name : '');
 $description = old('description', isset($curso->description) ? $curso->description : '');
 $category = old('category', isset($curso->category) ? $curso->category : '');

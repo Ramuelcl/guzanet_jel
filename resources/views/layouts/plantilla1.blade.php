@@ -19,11 +19,23 @@
 
 </head>
 
-<body>
+<body class="font-sans bg-gray-500 text-white">
   <!-- header -->
   <header>
     @include('layouts.partials.header')
   </header>
+  {{-- mensajes --}}
+  <div class="container">
+    @if (Session::has('success'))
+      <div class="alert alert-success">
+        {{ Session::get('success') }}
+        @php
+          Session::forget('success');
+        @endphp
+      </div>
+    @endif
+  </div>
+
   @yield('content')
   <!-- footer -->
   <footer>
