@@ -7,26 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title')</title>
   <!-- favicon -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- estilos -->
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <style>
-    .active {
-      color: blue;
-      font-weight: bold;
+    body {
+      fontfamily: 'Nunito'
     }
 
   </style>
-  <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
-<body class="font-sans bg-gray-500 text-white">
+<body>
   <!-- header -->
   <header>
     @include('layouts.partials.header')
   </header>
   {{-- mensajes --}}
   <div class="container">
-    @include('recursos.flashMessagges')
+    {{-- @include('recursos.flashMessagges') --}}
     {{-- @if (Session::has('success'))
       <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -35,9 +35,9 @@
         @endphp
       </div>
     @endif --}}
-  </div>
 
-  @yield('content')
+    @yield('content')
+  </div>
   <!-- footer -->
   <footer>
     @include('layouts.partials.footer')

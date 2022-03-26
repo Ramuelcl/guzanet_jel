@@ -13,7 +13,7 @@
   </div>
   <div class="flex items-right">
     <ul class="flex items-center">
-      @include('recursos.search')
+      @include('components.search')
       <li class="ml-6"><a href="{{ route('nosotros') }}"
           class="{{ request()->routeIs('nosotros') ? 'active' : '' }} hover:text-gray-300">Acerca
           de...</a></li>

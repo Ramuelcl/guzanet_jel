@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 
 // agregamos
-use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 // Spatie
 // use Spatie\Permission\PermissionRegistrar;
@@ -18,24 +19,32 @@ class UserSeeder extends Seeder
 {
     public function __construct()
     {
-        // $name='Super Admin';
-        // User::create([
-        //     'name' => $name,
-        //     'email' => 'admin@email.com',
-        //     // 'avatar'=>$this->faker->image('public/storage/images/avatars', $width = 640, $height = 480, null, false),
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('0Admin'), //bcrypt('0Admin')
-        //     'remember_token' => Str::random(10)
-
-        // ])
-        // //->assignRole('super-admin')
-        // ;
-        // All current roles will be removed from the user and replaced by the array given
+        $users=array(
+            'admin'=>[
+                'name' => 'Super Admin',
+                'email' => 'admin@email.com',
+                // 'profile_photo_path'=>$this->faker->image('public/storage/images/avatars', $width = 640, $height = 480, null, false),
+                'email_verified_at' => now(),
+                'password' => Hash::make('0Admin'), //bcrypt('0Admin')
+                'remember_token' => Str::random(10)
+            ],
+            'guest'=>[
+                'name' => 'guest',
+                'email' => 'guest@email.com',
+                // 'profile_photo_path'=>$this->faker->image('public/storage/images/avatars', $width = 640, $height = 480, null, false),
+                'email_verified_at' => now(),
+                'password' => Hash::make('guest'), //bcrypt('guest')
+                'remember_token' => Str::random(10)
+            ],
+        );
+        foreach ($users as $user) {
+            User::create($user);
+            // if ($user['name']=='Super Admin') {
+            //     $user->assignRole('super-admin');
+                // All current roles will be removed from the user and replaced by the array given
         // $user->syncRoles(['super-admin']);
         // dd('creando super admin');
-
-        // $user->assignRole('super-admin');
-        // $user->givePermissionTo(Permission::all());
+        }
     }
 
     /**
@@ -45,6 +54,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(49)->create();
+        User::factory(50)->create();
     }
 }

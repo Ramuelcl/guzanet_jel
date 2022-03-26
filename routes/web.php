@@ -18,6 +18,8 @@ use App\Http\Controllers\users\UserController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/welcome', 'welcome')->name('welcome');
     Route::view('/acercade', 'principal.nosotros')->name('nosotros');
     Route::view('/contactanos', 'principal.contactanos')->name('contactanos');
     Route::post('/contactanos', 'enviar')->name('contactanos.enviar');
@@ -29,6 +31,8 @@ Route::resource('cursos', CursoController::class);
 // users
 Route::resource('users', UserController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::view('/tables', 'admin.user.tables.tables')->name('tables');
+});

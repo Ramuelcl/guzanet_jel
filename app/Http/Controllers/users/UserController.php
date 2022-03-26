@@ -120,9 +120,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-
-        return redirect()->route('users.index')
-                    ->with('success', 'User deleted successfully.');
+        if ($user->id > 2) {
+            $user->delete();
+            return redirect()->route('users.index')
+                    ->with('success', "User '$user->name' deleted successfully.");
+        } else {
+            return redirect()->route('users.index')
+                    ->with('success', 'No se puede borrar usuario Admin ni Guest.');
+        }
     }
 }
