@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 // Spatie
-// use Spatie\Permission\PermissionRegistrar;
-// use Spatie\Permission\Models\model_has_roles;
-// use Spatie\Permission\Models\model_has_permissions;
+use Spatie\Permission\PermissionRegistrar;
+use Spatie\Permission\Models\model_has_roles;
+use Spatie\Permission\Models\model_has_permissions;
 
 class UserSeeder extends Seeder
 {
@@ -38,12 +38,13 @@ class UserSeeder extends Seeder
             ],
         );
         foreach ($users as $user) {
-            User::create($user);
-            // if ($user['name']=='Super Admin') {
-            //     $user->assignRole('super-admin');
+            $u= User::create($user);
+            if ($user['name']=='Super Admin') {
+                // dd('creando super admin');
+                $u->assignRole('super-admin');
                 // All current roles will be removed from the user and replaced by the array given
-        // $user->syncRoles(['super-admin']);
-        // dd('creando super admin');
+                // $user->syncRoles(['super-admin']);
+            }
         }
     }
 

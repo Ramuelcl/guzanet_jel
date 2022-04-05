@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\CursoSeeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Storage::deleteDirectory('images.avatars');
+        Storage::makeDirectory('images.avatars');
+
         $this->call([
+            RoleSeeder::class,
             CursoSeeder::class,
             UserSeeder::class,
             ]);

@@ -1,9 +1,7 @@
-@extends('layouts.plantilla1')
-@section('title', 'Guzanet')
+<x-app-layout>
 
-@section('content')
-  <h1>crear curso</h1>
-  <div>
+  <div class="mx-auto py-12">
+    <h1>crear curso</h1>
     <form action="{{ route('cursos.store') }}" method="POST">
       @csrf
       {{-- @method('') --}}
@@ -11,4 +9,5 @@
       @include('cursos.create_edit')
     </form>
   </div>
-@endsection
+
+</x-app-layout>

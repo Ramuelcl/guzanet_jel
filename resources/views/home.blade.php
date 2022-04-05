@@ -1,6 +1,7 @@
-@extends('layouts.plantilla1')
-@section('title', 'Home')
+<x-app-layout>
 
-@section('content')
-  <h1>Página principal</h1>
-@endsection
+  <div class="mx-auto py-12">
+    <h1>Página principal</h1>
+  </div>
+
+</x-app-layout>

@@ -3,12 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+// Spatie
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
-    protected $roles=[
+    private $roles=[
         // tabla roles
         'user',
         'writer',
@@ -17,10 +18,10 @@ class RoleSeeder extends Seeder
         'admin',
         'super-admin',
         'Blog',
-        'Contab',
+        'Banca',
         'HorTrabajo',
         ];
-    protected $permissions=[
+    private $permissions=[
         // tabla permisos
         'access',
         'view',
@@ -41,12 +42,12 @@ class RoleSeeder extends Seeder
     {
         // create permissions
         foreach ($this->permissions as $key => $value) {
-            $permissions[]=Permission::create(['name'=>$value]);
+            $permissions=Permission::create(['name'=>$value]);
         }
 
         // create roles and assign created permissions
         foreach ($this->roles as $key => $value) {
-            $role=  Role::create(['name'=>$value]);
+            $role=Role::create(['name'=>$value]);
             // if ($value=='super-admin') {
             //     // dd($value);
             //     $role->givePermissionTo($permissions);

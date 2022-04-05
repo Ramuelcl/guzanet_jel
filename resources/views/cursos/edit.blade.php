@@ -1,15 +1,13 @@
-@extends('layouts.plantilla1')
-@section('title', 'Guzanet')
+<x-app-layout>
 
-@section('content')
-  <h1>editar curso</h1>
+  <div class="mx-auto py-12">
+    <h1>editar curso</h1>
 
-  <div>
     <form action="{{ route('cursos.update', $curso) }}" method="post">
       @csrf
       @method('PUT')
 
       @include('cursos.create_edit')
     </form>
-  </div>
-@endsection
+
+</x-app-layout>

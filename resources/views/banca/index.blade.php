@@ -1,8 +1,7 @@
 <x-app-layout>
 
   <div class="mx-auto py-12">
-    <h1>
-      Formulario Tablas
-    </h1>
+    <h1>listar movimientos de la banca</h1>
+
   </div>
 </x-app-layout>

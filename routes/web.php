@@ -20,7 +20,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
     Route::view('/welcome', 'welcome')->name('welcome');
-    Route::view('/acercade', 'principal.nosotros')->name('nosotros');
+    Route::view('/acercade', 'principal.acercade')->name('acercade');
     Route::view('/contactanos', 'principal.contactanos')->name('contactanos');
     Route::post('/contactanos', 'enviar')->name('contactanos.enviar');
 });
@@ -35,4 +35,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::view('/tables', 'admin.user.tables.tables')->name('tables');
+
+    Route::view('/banca', 'banca.index')->name('banca.index');
 });

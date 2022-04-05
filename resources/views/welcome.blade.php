@@ -1,4 +1,4 @@
-@include('layouts.plantilla1')
+@include('layouts.plantilla0')
 
 <div class="mx-auto">
   <x-alert color="orange" class="mb-8">alertaa</x-alert>
