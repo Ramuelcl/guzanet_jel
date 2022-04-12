@@ -16,13 +16,14 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
-            $table->BigInteger('user')->nullable();
             $table->string('title', 50)->nullable();
-            $table->string('slug')->unique()->nullable();
             $table->text('content')->nullable();
+            $table->string('slug')->unique()->nullable();
+            $table->json('meta_data')->nullable();
+            $table->bigInteger('author_id');
+            $table->bigInteger('category_id');
+
             $table->enum('status', array('draft', 'in progress', 'pending','assigned', 'rejected'))->index()->default('draft'); // *** fix this
-            $table->BigInteger('parent')->nullable();
-            $table->tinyInteger('type')->nullable();
 
             $table->timestamps();
         });

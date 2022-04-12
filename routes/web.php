@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\inicio\HomeController;
+use App\Http\Livewire\Categories\Categories;
+
 use App\Http\Controllers\curso\CursoController;
 use App\Http\Controllers\users\UserController;
 
@@ -18,21 +20,25 @@ use App\Http\Controllers\users\UserController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
-    Route::view('/welcome', 'welcome')->name('welcome');
+    Route::get('#', 'gato')->name('gato');
+    ///
     Route::view('/acercade', 'principal.acercade')->name('acercade');
     Route::view('/contactanos', 'principal.contactanos')->name('contactanos');
     Route::post('/contactanos', 'enviar')->name('contactanos.enviar');
+
+//
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
 // Cursos
 Route::resource('cursos', CursoController::class);
 
-// users
-Route::resource('users', UserController::class);
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    // users
+    Route::resource('/dashboard/users', UserController::class);
+    // categories
+    Route::get('/dashboard/categories', Categories::class)->name('categories');
+    // Route::get('dashboard/categories/{id}/posts', Categoryposts::class);
 
     Route::view('/tables', 'admin.user.tables.tables')->name('tables');
 

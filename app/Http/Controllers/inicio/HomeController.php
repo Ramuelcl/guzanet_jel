@@ -14,6 +14,10 @@ class HomeController extends Controller
     {
         return \view('home');
     }
+    public function gato()
+    {
+        return null;
+    }
 
     // seccion contactanos
     public function enviar(Request $request)
