@@ -12,6 +12,7 @@ class Category extends Model
     protected $fillable = [
         'title',
         'color',
+        'status',
         'meta_data',
     ];
     public function colors()
@@ -21,5 +22,10 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'Activo');
     }
 }

@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title', 50);
             $table->string('color', 6);
             $table->string('rgb', 20);
-            // $table->string('nombre', 50);
+            $table->enum('status', ['activo','inactivo'])->default('inactivo');
             $table->json('meta_data')->nullable();
             $table->timestamps();
         });
